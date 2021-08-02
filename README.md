@@ -38,7 +38,19 @@ En Linux:
 	$ set  FLASK_APP=api/
 	$ set FLASK_ENV=development
 
+## script.py
+
+Ya que tenemos todo configurado, podemos hacer uso del archivo **script.py**:
+	
+	$ python script.py
+
+Luego de la ejecución del script, se creará la tabla **playersdata** yla consola se pausará un momento; esto significa que
+ya ha recolectado los datos de la primera página, los habrá guardado en nuestra base de datos
+anteriormente creada y preguntará si se desea continuar con los datos de la siguiente página. 
+Una vez consideremos que tenemos suficientes datos, podemos empezar a hacer uso de la API para probar su funcionamiento.
+
 Por ultimo, se debe ejecutar las siguientes instrucciones:
 
-	$ flask init-db
+
+	$ flask init-db * Este comando solo nos sirve si no hemos creado la tabla con la ejecución del script
 	$ flask run
