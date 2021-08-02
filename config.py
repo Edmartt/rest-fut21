@@ -1,3 +1,5 @@
+"""Valores de configuracion por defecto en la app"""
+
 import os
 
 

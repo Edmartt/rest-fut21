@@ -1,3 +1,5 @@
+"""Instrucciones que se ejecutan en la base de datos."""
+
 instructions = [
         "DROP TABLE IF EXISTS playersdata;",
 

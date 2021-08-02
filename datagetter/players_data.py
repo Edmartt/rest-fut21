@@ -1,4 +1,4 @@
-from database import Database
+from datagetter.database import Database
 
 
 def insert_data(names, positions, nations, clubs):
