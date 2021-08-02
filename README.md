@@ -35,8 +35,8 @@ En Linux:
 	$ export DB_USERNAME=nombre del usuario del servidor de BD
 	$ export DB_PASSWORD=password
 	$ export API_KEY= valor del header x-api-key
-	$ set  FLASK_APP=api/
-	$ set FLASK_ENV=development
+	$ export  FLASK_APP=api/
+	$ export FLASK_ENV=development
 
 ## script.py
 
