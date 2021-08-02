@@ -1,3 +1,5 @@
+'''Endpoints del API.'''
+
 from flask import make_response, jsonify, abort, request, current_app
 from . import main
 from ..team_players import Team
@@ -14,16 +16,15 @@ def get_team_players(name):
     '''Obtiene los jugadores de un equipo.'''
 
     headers = request.headers
-    auth = headers.get('X-Api-Key')  # Capturamos la api key que vaya en el header enviada por el cliente
-    api_key = current_app.config['API_KEY']  # asignamos lo que tengamos en la variable de entorno como api_key
+    auth = headers.get('X-Api-Key')  # Capturamos api key enviada por el cliente
+    api_key = current_app.config['API_KEY']  # asignamos la variable de entorno como api_key
     team = Team()
 
     if auth == api_key:
         players = team.get_players(name)
         if players is None:
-            abort(404)    
+            abort(404)
         return make_response(jsonify(players), 200)
-        
     return make_response(jsonify({'message': 'Not Authorized'}), 401)
 
 
@@ -38,8 +39,8 @@ def get_data():
     team = Team()
     result = team.get_player_string(args)
     headers = request.headers
-    auth = headers.get('X-Api-Key')  # Capturamos la api key que vaya en el header enviada por el cliente
-    api_key = current_app.config['API_KEY']  # asignamos lo que tengamos en la variable de entorno como api_key
+    auth = headers.get('X-Api-Key')
+    api_key = current_app.config['API_KEY']
 
     if auth == api_key:
         if result is None:
