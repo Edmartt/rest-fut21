@@ -1,6 +1,6 @@
 # rest-fut21 
 
-## Instalacion
+## Instalacion en Virtualenv
 
 Despues de clonar, hay que crear un ambiente virtual e instalar las dependencias. En Linux:
 
@@ -38,19 +38,17 @@ En Linux:
 	$ export  FLASK_APP=api/
 	$ export FLASK_ENV=development
 
-## script.py
-
-Ya que tenemos todo configurado, podemos hacer uso del archivo **script.py**:
-	
-	$ python script.py
-
-Luego de la ejecución del script, se creará la tabla **playersdata** yla consola se pausará un momento; esto significa que
-ya ha recolectado los datos de la primera página, los habrá guardado en nuestra base de datos
-anteriormente creada y preguntará si se desea continuar con los datos de la siguiente página. 
-Una vez consideremos que tenemos suficientes datos, podemos empezar a hacer uso de la API para probar su funcionamiento.
-
-Por ultimo, se debe ejecutar las siguientes instrucciones:
 
 
-	$ flask init-db * Este comando solo nos sirve si no hemos creado la tabla con la ejecución del script
+Por ultimo, se debe ejecutar las siguientes instrucciones, tanto en Windows como en Linux:
+
+	$ flask init-db 
 	$ flask run
+
+## Despliegue con Docker:
+
+    $ docker-compose build
+    # docker-compose up
+
+### NOTA
+Una vez se haya completado el despliegue, podemos hacer uso del script [datagetter](https://github.com/Edmartt/datagetter) para recolectar los datos y realizar las respectivas pruebas a los distintos endpoints del API REST.

@@ -19,7 +19,9 @@ def get_team_players(name):
     auth = headers.get('X-Api-Key')  # Capturamos api key enviada por el cliente
     api_key = current_app.config['API_KEY']  # asignamos la variable de entorno como api_key
     team = Team()
-
+    print(auth)
+    print(api_key)
+    print(api_key == auth)
     if auth == api_key:
         players = team.get_players(name)
         if players is None:

@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+
+  db:
+
+    image: "mariadb:10.5"
+
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    
+    ports:
+      - "32000:3306"
+
+    environment:
+      MYSQL_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: playersdata
+      MYSQL_PASSWORD: dev
+      MYSQL_USER: dev
+  
+  web:
+
+    build: ./app
+
+    links:
+      - db
+
+    ports:
+
+      - "5000:5000"
+    environment:
+      FLASK_APP: ./run.py
+      MYSQL_HOST: db
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+      MYSQL_DATABASE: playersdata
+      
+    volumes:
+      - .:/app
+
+  
