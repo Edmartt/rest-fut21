@@ -26,7 +26,7 @@ Para correr el servidor hay que configurar las variables de entorno. En Windows:
 	$ set DB_USERNAME=nombre del usuario del servidor de BD
 	$ set DB_PASSWORD=password
 	$ set API_KEY= valor del header x-api-key
-	$ set  FLASK_APP=api
+	$ set  FLASK_APP=run.py
 	$ set FLASK_ENV=development
 
 En Linux:
@@ -35,7 +35,7 @@ En Linux:
 	$ export DB_USERNAME=nombre del usuario del servidor de BD
 	$ export DB_PASSWORD=password
 	$ export API_KEY= valor del header x-api-key
-	$ export  FLASK_APP=api/
+	$ export  FLASK_APP=run.py
 	$ export FLASK_ENV=development
 
 
