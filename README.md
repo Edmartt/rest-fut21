@@ -59,3 +59,37 @@ Una vez se haya completado el despliegue, podemos hacer uso del script [datagett
 
 Documentación de la API
 -----------------------
+
+### Mostrar Jugadores
+
+Retorna todos los jugadores que pertenezcan a un equipo.
+
+* **URL** 
+
+  /api/v1/team/<string:team_name>
+
+* **Métodos:**
+  
+  `GET`
+
+* **Parámetros de URL**
+
+  **Requerido:**
+
+  `name=[string]`
+
+* **Respuesta exitosa:**
+
+  * **Código:** 200 <br />
+    **Contenido:** `{club: Icons, id: 9, name: Diego Armando Maradona, nation: Argentina, position: CAM}`
+
+* **Respuesta de Error:**
+  
+  * **Código:** 404 NOT FOUND <br />
+    **Contenido:** `{Error: Not Found}`
+
+   O
+
+  * **Código:** 401 UNAUTHORIZED <br />
+    **Contenido:** `{message: Not Authorized}`
+
