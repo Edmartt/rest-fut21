@@ -162,7 +162,7 @@ Con la herramienta `curl` hacemos una petición al endpoint **/api/v1/team/** en
     {
         "club": "Icons",
 	"id": 36,
-	"name": "Ronaldo Lu\u00eds Naz\u00e1rio de Lima",
+	"name": "Ronaldo Luis Nazário de Lima",
 	"nation": "Brazil",
 	"position": "ST"
 			  
@@ -224,9 +224,9 @@ El endpoint **/api/v1/players** funciona de la siguiente manera:
 		      
     },
     {
-     "club": "Atl\u00e9tico Madrid",
+     "club": "Atlético Madrid",
      "id": 40,
-     "name": "Diego God\u00edn",
+     "name": "Diego Godín",
      "nation": "Uruguay",
      "position": "CB"
 		      
@@ -270,9 +270,9 @@ podemos invertir el orden en el que se muestran los jugadores:
      "position": "CAM"
      },
      {
-     "club": "Atl\u00e9tico Madrid",
+     "club": "Atlético Madrid",
      "id": 40,
-     "name": "Diego God\u00edn",
+     "name": "Diego Godín",
      "nation": "Uruguay",
      "position": "CB"
      },
