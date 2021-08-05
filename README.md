@@ -52,3 +52,10 @@ Por ultimo, se debe ejecutar las siguientes instrucciones, tanto en Windows como
 
 ### NOTA
 Una vez se haya completado el despliegue, podemos hacer uso del script [datagetter](https://github.com/Edmartt/datagetter) para recolectar los datos y realizar las respectivas pruebas a los distintos endpoints del API REST.
+
+
+
+
+
+Documentación de la API
+-----------------------
