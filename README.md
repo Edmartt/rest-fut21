@@ -26,6 +26,7 @@ Para correr el servidor hay que configurar las variables de entorno. En Windows:
 	$ set MYSQL_HOST=nombre del host(puede ser localhost)
 	$ set MYSQL_USER=nombre del usuario del servidor de BD
 	$ set MYSQL_PASSWORD=password
+	$ set MYSQL_DATABASE=nombre de la base de datos
 	$ set API_KEY= valor del header x-api-key
 	$ set FLASK_APP=run.py
 	$ set FLASK_ENV=development
@@ -35,6 +36,7 @@ En Linux:
 	$ export MYSQL_HOST=nombre del host(puede ser localhost)
 	$ export MYSQL_USER=nombre del usuario del servidor de BD
 	$ export MYSQL_PASSWORD=password
+	$ export MYSQL_DATABASE=nombre de la base de datos
 	$ export API_KEY= valor del header x-api-key
 	$ export FLASK_APP=run.py
 	$ export FLASK_ENV=development
