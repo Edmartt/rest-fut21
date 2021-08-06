@@ -99,44 +99,44 @@ Returns all the players that belong to a team. The right **x-api-key** header mu
 
 ### Search Coincidences:
 
-Retorna datos de los jugadores buscados por nombre completo o parcial, devolviendo todas las coincidencias.<br /> Ordena los resultados de forma ascendente o descendente. Por defecto el orden es ascendente. Hay que enviar el header **x-api-key** con la clave válida.
+Returns the players data searched by partial or full name, returning all the coincidences.<br /> Sort the results in a ascending or descending way. By default, the order is ascending. The right x-api-key header must be sent.
 
 * **URL** 
 
   /api/v1/players?search=name&order=
 
-* **Métodos:**
+* **Methods:**
   
   `GET`
 
-* **Parámetros de URL**
+* **URL Parameters**
 
-  **Requerido:**
+  **Required:**
 
   `name=[string o char]`
   
-  **Opcional:**
+  **Optional:**
 
   `order=[asc o desc]`
 
-* **Respuesta exitosa:**
+* **Success Response:**
 
-  * **Código:** 200 <br />
-    **Contenido:** `{club: FC Barcelona, id: 14, name: Luis Suárez, nation: Uruguay, position: ST}, {club: Real Madrid, id: 2, name: Luka Modric, nation: Croatia, position: CM}`
+  * **Code:** 200 <br />
+    **Content:** `{club: FC Barcelona, id: 14, name: Luis Suárez, nation: Uruguay, position: ST}, {club: Real Madrid, id: 2, name: Luka Modric, nation: Croatia, position: CM}`
 
-* **Respuesta de Error:**
+* **Error Response:**
   
-  * **Código:** 404 NOT FOUND <br />
-    **Contenido:** `{Error: Not Found}`
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{Error: Not Found}`
 
-   O
+   Or
 
-  * **Código:** 401 UNAUTHORIZED <br />
-    **Contenido:** `{message: Not Authorized}`
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{message: Not Authorized}`
 
-### Ejemplo
+### Example
 
-Con la herramienta `curl` hacemos una petición al endpoint **/api/v1/team/** enviando el header **x-api-key**:
+With a tool like `curl` we can make a request to the endpoint **/api/v1/team/** sending the **x-api-key** header:
 
     $ curl -i -H "x-api-key: 1234" -X GET http://localhost:5000/api/v1/team/Icons
     HTTP/1.0 200 OK
@@ -188,7 +188,7 @@ Con la herramienta `curl` hacemos una petición al endpoint **/api/v1/team/** en
       }
     ]
 
-Si hacemos el request sin el header x-api-key:
+If we do the request without the **x-api-key** header:
 
     $ curl -i -X GET http://localhost:5000/api/v1/team/Icons
     HTTP/1.0 401 UNAUTHORIZED
@@ -201,7 +201,7 @@ Si hacemos el request sin el header x-api-key:
     	"message": "Not Authorized"
     }
 
-Si hacemos el request con un header x-api-key erróneo:
+If we do the request with a wrong **x-api-key** header:
 
     $ curl -i -H "x-api-key: 1234i" -X GET http://localhost:5000/api/v1/team/Icons
     HTTP/1.0 401 UNAUTHORIZED
@@ -213,7 +213,7 @@ Si hacemos el request con un header x-api-key erróneo:
       "message": "Not Authorized"
     }
 
-El endpoint **/api/v1/players** funciona de la siguiente manera:
+The endpoint **/api/v1/players** works like this:
 
     $ curl -i -H "x-api-key: 1234" -X GET http://localhost:5000/api/v1/players?search=d
 
@@ -252,8 +252,8 @@ El endpoint **/api/v1/players** funciona de la siguiente manera:
       }
     ]
 
-El resultado es retornar todos los jugadores cuyos nombres empiecen por la letra d. Si se envía un querystring adicional **order** <br />
-podemos invertir el orden en el que se muestran los jugadores:
+The result is to return all the players whose names begin with the letter d. If an additional querystring is sent ** order ** <br />
+we can reverse the order in which the players are displayed:
 
     $ curl -i -H "x-api-key: 1234" -X GET "http://localhost:5000/api/v1/players?search=d&order=desc"
 
