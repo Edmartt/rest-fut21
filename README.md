@@ -1,103 +1,103 @@
 # REST-FUT21
 
-## Instalacion en Virtualenv
+## Install on Virtualenv
 
-Despues de clonar, hay que crear un ambiente virtual e instalar las dependencias. En Linux:
+After cloning, a virtual environment must be created. On Linux:
 
-	$ python3 -m venv nombre del ambiente
+	$ python3 -m venv virtualenv name 
 	$ source env/bin/activate
-	(nombre del ambiente)$ pip3 install requirements.txt
+	(virtualenv name)$ pip3 install requirements.txt
 
-En Windows se deben usar los siguientes comandos:
+On Linux:
 
 	$ python -m venv nombre del ambiente
 	$ venv\Scripts\activate
-	(nombre del ambiente)$ pip install requirements.txt
+	(virtualenv name)$ pip install requirements.txt
 
-## Ejecucion
+## Running
 
-### Nota
+### Note
 
-El servidor de base de datos usado puede ser MySQL/MariaDB. 
-Hay que crear la base de datos, primero que nada.
+The database server can be MySQL/MariaDB. The database must be created first of all.
 
-Para correr el servidor hay que configurar las variables de entorno. En Windows:
+To run the server, you have to set the environment variables. On Windows:
 
-	$ set MYSQL_HOST=nombre del host(puede ser localhost)
-	$ set MYSQL_USER=nombre del usuario del servidor de BD
-	$ set MYSQL_PASSWORD=password
-	$ set MYSQL_DATABASE=nombre de la base de datos
-	$ set API_KEY= valor del header x-api-key
+	$ set MYSQL_HOST=hostname (localhost)
+	$ set MYSQL_USER=server username
+	$ set MYSQL_PASSWORD=server password
+	$ set MYSQL_DATABASE=database name
+	$ set API_KEY= header x-api-key value
 	$ set FLASK_APP=run.py
 	$ set FLASK_ENV=development
 
 En Linux:
 
-	$ export MYSQL_HOST=nombre del host(puede ser localhost)
-	$ export MYSQL_USER=nombre del usuario del servidor de BD
-	$ export MYSQL_PASSWORD=password
-	$ export MYSQL_DATABASE=nombre de la base de datos
-	$ export API_KEY= valor del header x-api-key
+	$ export MYSQL_HOST=hostname (localhost)
+	$ export MYSQL_USER=server username
+	$ export MYSQL_PASSWORD=server password
+	$ export MYSQL_DATABASE=database name
+	$ export API_KEY= header x-api-key value
 	$ export FLASK_APP=run.py
 	$ export FLASK_ENV=development
 
 
 
-Por ultimo, se debe ejecutar las siguientes instrucciones, tanto en Windows como en Linux:
+Finally, the following instruction must be used, on Linux and Windows:
 
 	$ flask init-db 
 	$ flask run
 
-## Despliegue con Docker:
+## Docker deployment:
 
     $ docker-compose build
     # docker-compose up
 
-### NOTA
-Una vez se haya completado el despliegue, podemos hacer uso del script [datagetter](https://github.com/Edmartt/datagetter) para recolectar los datos y realizar las respectivas pruebas a los distintos endpoints del API REST.
+### NOTE
+
+Once the deployment is complete, we can make use of the datagetter script [datagetter](https://github.com/Edmartt/datagetter) to collect the data and perform the respective tests on the different endpoints of the REST API.
 
 
 
 
 
-Documentación de la API
+API Documentation
 -----------------------
 
-### Mostrar Jugadores
+### Show Players
 
-Retorna todos los jugadores que pertenezcan a un equipo. Hay que enviar el header **x-api-key** con la clave válida.
+Returns all the players that belong to a team. The right **x-api-key** header must be sent.
 
 * **URL** 
 
   /api/v1/team/:team_name
 
-* **Métodos:**
+* **Methods:**
   
   `GET`
 
-* **Parámetros de URL**
+* **URL Parameters**
 
-  **Requerido:**
+  **Required:**
 
   `name=[string]`
 
-* **Respuesta exitosa:**
+* **Success Response:**
 
-  * **Código:** 200 <br />
-    **Contenido:** `{club: Icons, id: 9, name: Diego Armando Maradona, nation: Argentina, position: CAM}`
+  * **Code:** 200 <br />
+    **Content:** `{club: Icons, id: 9, name: Diego Armando Maradona, nation: Argentina, position: CAM}`
 
-* **Respuesta de Error:**
+* **Error Response:**
   
-  * **Código:** 404 NOT FOUND <br />
-    **Contenido:** `{Error: Not Found}`
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{Error: Not Found}`
 
-   O
+   Or
 
-  * **Código:** 401 UNAUTHORIZED <br />
-    **Contenido:** `{message: Not Authorized}`
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{message: Not Authorized}`
 
 
-### Buscar Coincidencias
+### Search Coincidences:
 
 Retorna datos de los jugadores buscados por nombre completo o parcial, devolviendo todas las coincidencias.<br /> Ordena los resultados de forma ascendente o descendente. Por defecto el orden es ascendente. Hay que enviar el header **x-api-key** con la clave válida.
 
