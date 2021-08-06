@@ -19,18 +19,18 @@ def get_db():
 
 
 def close_db(e=None):
-    db = g.pop('db', None)
+    db_connect = g.pop('db', None)
 
-    if db is not None:
-        db.close()
+    if db_connect is not None:
+        db_connect.close()
 
 
 def init_db():
-    db, c = get_db()
+    db_connect, db_cursor = get_db()
 
     for i in instructions:
-        c.execute(i)
-    db.commit()
+        db_cursor.execute(i)
+    db_connect.commit()
 
 
 @click.command('init-db')
