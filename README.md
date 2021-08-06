@@ -252,7 +252,7 @@ The endpoint **/api/v1/players** works like this:
       }
     ]
 
-The result is to return all the players whose names begin with the letter d. If an additional querystring is sent ** order ** <br />
+The result is to return all the players whose names begin with the letter d. If an additional querystring is sent **order** <br />
 we can reverse the order in which the players are displayed:
 
     $ curl -i -H "x-api-key: 1234" -X GET "http://localhost:5000/api/v1/players?search=d&order=desc"
