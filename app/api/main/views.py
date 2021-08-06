@@ -12,21 +12,21 @@ def not_found(error):
 
 
 @main.route('/api/v1/team/<string:name>', methods=['GET'])
-def get_team_players(name):
+def get_team_players(name: str):
     '''Obtiene los jugadores de un equipo.'''
 
     headers = request.headers
     auth = headers.get('X-Api-Key')  # Capturamos api key enviada por el cliente
     api_key = current_app.config['API_KEY']  # asignamos la variable de entorno como api_key
     team = Team()
-    print(auth)
-    print(api_key)
-    print(api_key == auth)
+
     if auth == api_key:
         players = team.get_players(name)
+
         if players is None:
             abort(404)
         return make_response(jsonify(players), 200)
+
     return make_response(jsonify({'message': 'Not Authorized'}), 401)
 
 
@@ -48,4 +48,5 @@ def get_data():
         if result is None:
             abort(404)
         return make_response(jsonify(result), 200)
+
     return make_response(jsonify({'message': 'Not Authorized'}), 401)
