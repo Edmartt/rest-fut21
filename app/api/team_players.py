@@ -2,7 +2,7 @@ from .db import get_db
 
 class Team:
 
-    def get_players(self, team_name):
+    def get_players(self, team_name: str) -> list:
         connection, cursor = get_db()
         query = 'SELECT * FROM playersdata WHERE club=%s'
 
@@ -18,7 +18,7 @@ class Team:
             connection.close()
 
 
-    def get_player_string(self, string):
+    def get_player_string(self, string: str) -> list:
         connection, cursor = get_db()
         query = 'SELECT * FROM playersdata WHERE name LIKE %s ORDER BY name {}'.format(string.get('order', 'asc'))
 
