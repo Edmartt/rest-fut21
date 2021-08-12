@@ -287,3 +287,11 @@ we can reverse the order in which the players are displayed:
      "position": "GK"		      
      }
     ]
+
+## Credits
+
+* [Edmartt's Profile](https://github.com/Edmartt)
+  - The developer of this REST API Demo
+
+* [vishnubob's Profile](https://github.com/vishnubob)
+  - for the development of the [wait-for-it script](https://github.com/vishnubob/wait-for-it)
