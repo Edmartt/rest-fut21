@@ -1,3 +1,4 @@
+import logging
 from .db import get_db
 
 class Team:
@@ -13,7 +14,7 @@ class Team:
                 return result
 
         except Exception as ex:
-            print(ex)
+            logging.exception('DB related error: ')
         finally:
             connection.close()
 
@@ -31,7 +32,7 @@ class Team:
                 return result
 
         except Exception as ex:
-            print(ex)
+            logging.exception('DB related error: ')
 
         finally:
             connection.close()
