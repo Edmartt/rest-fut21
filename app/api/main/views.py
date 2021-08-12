@@ -13,7 +13,11 @@ def not_found(error):
 
 @main.route('/api/v1/team/<string:name>', methods=['GET'])
 def get_team_players(name: str):
-    '''Obtiene los jugadores de un equipo.'''
+    '''Obtiene los jugadores de un equipo.
+
+    :params: name: Nombre del equipo del que se quieren obtener los datos
+    de los jugadores.
+    '''
 
     headers = request.headers
     auth = headers.get('X-Api-Key')  # Capturamos api key enviada por el cliente
