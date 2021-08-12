@@ -49,6 +49,20 @@ Finally, the following instruction must be used, on Linux and Windows:
 
 ## Docker deployment:
 
+
+A .env file is needed for the environment variables
+	
+	MYSQL_HOST=db (the services name is the host, so you'll need exactly this name)
+	MYSQL_USER=your_username
+	MYSQL_PASSWORD=server_password
+	MYSQL_DATABASE=database_name
+	API_KEY=your_x_api_key
+	FLASK_RUN_HOST=0.0.0.0
+	FLASK_APP=run.py
+	FLASK_ENV=development
+
+After that just do the following:
+
     $ docker-compose build
     # docker-compose up
 
