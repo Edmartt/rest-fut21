@@ -1,3 +1,7 @@
+#DB backup
+db/
+db/*
+
 #vscode
 vscode/
 .vscode/
