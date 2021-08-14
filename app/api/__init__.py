@@ -1,9 +1,18 @@
+"""Main function which contains the main core"""
+
 from flask import Flask
+from config import config
 from . import db
-from .config import config
 
 
 def create_app(config_name: str):
+    """Factory function for a more structured project.
+
+    :params: config_name: A configuration name is required
+    for start the application. This name can be:
+    1. Development
+    2. Testing
+    """
 
     app = Flask(__name__)
     app.config.from_object(config[config_name])
