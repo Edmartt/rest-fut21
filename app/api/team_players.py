@@ -1,6 +1,7 @@
 import logging
 from .db import get_db
 
+
 class Team:
 
     def get_players(self, team_name: str) -> list:
