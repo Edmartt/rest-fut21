@@ -18,6 +18,9 @@ services:
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
       MYSQL_USER: "${MYSQL_USER}"
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+
+    volumes:
+      - './db:/var/lib/mysql'
   
   web:
 
@@ -25,7 +28,7 @@ services:
 
     env_file: "./.env"
 
-    command: bash -c "./app/wait-for-it.sh -t 40 db:3306 && flask init-db && flask run"
+    command: bash -c "./wait-for-it.sh -t 60 db:3306 && flask init-db && flask run"
 
     links:
       - db
@@ -37,4 +40,4 @@ services:
 
 
     volumes:
-      - .:/app
+      - ./app:/app
