@@ -1,5 +1,5 @@
 '''Endpoints del API.'''
-
+from flask.views import MethodView
 from flask import make_response, jsonify, abort, request, current_app
 from . import main
 from ..dao import QueryGenerator
@@ -13,48 +13,27 @@ def not_found(error):
     return make_response(jsonify({'Error': 'Not Found'}), 404)
 
 
-@main.route('/api/v1/team/<string:name>', methods=['GET'])
-def get_team_players(name: str):
-    '''Obtiene los jugadores de un equipo.
+class TeamPlayers(MethodView):
 
-    :params: name: Nombre del equipo del que se quieren obtener los datos
-    de los jugadores.
-    '''
+    def __init__(self, team: Team, querygen: QueryGenerator):
+        self.team = team
+        self.querygen = querygen
 
-    headers = request.headers
-    auth = headers.get('X-Api-Key')  # Capturamos api key enviada por el cliente
-    api_key = current_app.config['API_KEY']  # asignamos la variable de entorno como api_key
-    team = Team()
-    querygen = QueryGenerator(DatabaseManager())
+    def get(self, team_name: str):
+        headers = request.headers
+        auth = headers.get('X-Api-Key')  # Capturamos api key enviada por el cliente
+        api_key = current_app.config['API_KEY']  # asignamos la variable de entorno como api_key
 
-    if auth == api_key:
-        players = team.get_players(name, querygen)
+        if auth == api_key:
+            players = self.team.get_players(team_name, self.querygen)
 
-        if players is None:
-            abort(404)
-        return make_response(jsonify(players), 200)
-
-    return make_response(jsonify({'message': 'Not Authorized'}), 401)
+            if players is None:
+                abort(404)
+            return make_response(jsonify(players), 200)
+        return make_response(jsonify({'message': 'Not Authorized'}), 401)
 
 
-@main.route('/api/v1/players')
-def get_data():
-    '''Busca jugadores con coincidencias parciales o totales.
-
-    Acepta querystrings: search="nombre de jugador"&order.
-    El orden puede ser asc o desc, por defecto es asc, incluso si se omite.
-    '''
-    args = request.args
-    team = Team()
-    querygen = QueryGenerator(DatabaseManager())
-    result = team.get_player_string(args, querygen)
-    headers = request.headers
-    auth = headers.get('X-Api-Key')
-    api_key = current_app.config['API_KEY']
-
-    if auth == api_key:
-        if result is None:
-            abort(404)
-        return make_response(jsonify(result), 200)
-
-    return make_response(jsonify({'message': 'Not Authorized'}), 401)
+main.add_url_rule('/api/v1/teams/<string:team_name>',
+                  view_func=TeamPlayers.as_view
+                  ('get_players', Team(), QueryGenerator(DatabaseManager())),
+                  methods=['GET'])
