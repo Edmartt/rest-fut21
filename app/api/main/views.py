@@ -2,6 +2,8 @@
 
 from flask import make_response, jsonify, abort, request, current_app
 from . import main
+from ..dao import QueryGenerator
+from ..db import DatabaseManager
 from ..team_players import Team
 
 
@@ -23,9 +25,10 @@ def get_team_players(name: str):
     auth = headers.get('X-Api-Key')  # Capturamos api key enviada por el cliente
     api_key = current_app.config['API_KEY']  # asignamos la variable de entorno como api_key
     team = Team()
+    querygen = QueryGenerator(DatabaseManager())
 
     if auth == api_key:
-        players = team.get_players(name)
+        players = team.get_players(name, querygen)
 
         if players is None:
             abort(404)
@@ -43,7 +46,8 @@ def get_data():
     '''
     args = request.args
     team = Team()
-    result = team.get_player_string(args)
+    querygen = QueryGenerator(DatabaseManager())
+    result = team.get_player_string(args, querygen)
     headers = request.headers
     auth = headers.get('X-Api-Key')
     api_key = current_app.config['API_KEY']
