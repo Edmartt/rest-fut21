@@ -1,39 +1,16 @@
-import logging
-from .db import get_db
+from .dao import QueryGenerator
 
 
 class Team:
 
-    def get_players(self, team_name: str) -> list:
-        connection, cursor = get_db()
+    def get_players(self, team_name: str, querygen: QueryGenerator) -> list:
         query = 'SELECT * FROM playersdata WHERE club=%s'
+        return querygen.select(query, (team_name,))
 
-        try:
-            cursor.execute(query, (team_name,))
-            result = cursor.fetchall()
-            if result:
-                return result
+    def get_player_string(self, string: dict,
+                          querygen: QueryGenerator) -> list:
+        query = '''SELECT * FROM playersdata WHERE name
+        LIKE %s ORDER BY name {}'''.format(string.get('order', 'asc'))
 
-        except Exception as ex:
-            logging.exception('DB related error: ')
-        finally:
-            connection.close()
-
-
-    def get_player_string(self, string: str) -> list:
-        connection, cursor = get_db()
-        query = 'SELECT * FROM playersdata WHERE name LIKE %s ORDER BY name {}'.format(string.get('order', 'asc'))
-
-        qstring1 = string.get('search', None)
-
-        try:
-            cursor.execute(query, (qstring1+"%",))
-            result = cursor.fetchall()
-            if result:
-                return result
-
-        except Exception as ex:
-            logging.exception('DB related error: ')
-
-        finally:
-            connection.close()
+        querystring = string.get('search', None)
+        return querygen.select(query, (querystring+'%',))
