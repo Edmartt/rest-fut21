@@ -84,8 +84,7 @@ teams_view = TeamPlayers.as_view('show_players', Team(),
 players_view = Coincidences.as_view('get_player', Team(),
                                     QueryGenerator(DatabaseManager()))
 
-main.add_url_rule('/api/v1/teams/<string:team_name>',
-                  defaults={'team_name': None}, view_func=teams_view,
+main.add_url_rule('/api/v1/teams/<string:team_name>', view_func=teams_view,
                   methods=['GET'])
 
 main.add_url_rule('/api/v1/players', view_func=players_view, methods=['GET'])
