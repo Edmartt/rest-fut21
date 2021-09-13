@@ -24,6 +24,10 @@ def not_authorized(error):
     '''Custom answer in json format for 401 error'''
     return make_response(jsonify({'Error': 'Not Authorized'}), 401)
 
+
+@main.errorhandler(400)
+def bad_request(error):
+    return make_response(jsonify({'Error': 'Bad Request'}), 400)
 #  ------------------------------------------------------------------------------
 
 
@@ -66,6 +70,8 @@ class Coincidences(MethodView):
 
     def get(self):
         args = request.args
+        if len(list(args.items())) == 0:  # Innmutable dict turned into list
+            abort(400)
         result = self.team.get_player_string(args, self.querygen)
         if result is None:
             abort(404)
