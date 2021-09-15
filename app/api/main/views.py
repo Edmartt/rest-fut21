@@ -1,48 +1,12 @@
 '''Endpoints del API.'''
 from flask.views import MethodView
-from flask import make_response, jsonify, abort, request, current_app
+from flask import make_response, jsonify, abort, request
 from . import main
 from ..dao import QueryGenerator
 from ..db import DatabaseManager
 from ..team_players import Team
-
-
-@main.errorhandler(404)
-def not_found(error):
-    '''Custom answer in json format for 404 error'''
-    return make_response(jsonify({'Error': 'Not Found'}), 404)
-
-
-@main.errorhandler(403)
-def forbidden(error):
-    '''Custom answer in json format for 403 error'''
-    return make_response(jsonify({'Error': 'Forbidden'}), 403)
-
-
-@main.errorhandler(401)
-def not_authorized(error):
-    '''Custom answer in json format for 401 error'''
-    return make_response(jsonify({'Error': 'Not Authorized'}), 401)
-
-
-@main.errorhandler(400)
-def bad_request(error):
-    return make_response(jsonify({'Error': 'Bad Request'}), 400)
-#  ------------------------------------------------------------------------------
-
-
-def auth_required(func):
-    '''Handles the authentication with header x-api-key.
-
-    Checks if the api_key sent in the header is the same that the one
-    in the environment variable.
-    '''
-    def decorator(*args, **kwargs):
-        auth = request.headers.get('X-API-KEY')
-        if auth != current_app.config['API_KEY']:
-            abort(401)
-        return func(*args, **kwargs)
-    return decorator
+from .errors import not_found, forbidden, not_authorized, bad_request
+from .auth import auth_required
 
 
 class TeamPlayers(MethodView):
