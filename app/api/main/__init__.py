@@ -4,4 +4,5 @@ from flask import Blueprint
 
 main = Blueprint('main', __name__)
 
-from . import views
+from . import players_views
+from . import coincidences_views
