@@ -8,9 +8,9 @@ After cloning, a virtual environment must be created. On Linux:
 	$ source env/bin/activate
 	(virtualenv name)$ pip3 install requirements.txt
 
-On Linux:
+On Windows:
 
-	$ python -m venv nombre del ambiente
+	$ python -m venv virtualenv name
 	$ venv\Scripts\activate
 	(virtualenv name)$ pip install requirements.txt
 
@@ -30,7 +30,7 @@ To run the server, you have to set the environment variables. On Windows:
 	$ set FLASK_APP=run.py
 	$ set FLASK_ENV=development
 
-En Linux:
+On Linux:
 
 	$ export MYSQL_HOST=hostname (localhost)
 	$ export MYSQL_USER=server username
