@@ -11,9 +11,10 @@ MarkupSafe==2.1.1
 mysql-connector==2.2.9
 mysqlclient==2.1.1
 pep8==1.7.1
-python-dotenv==0.20.0
+python-dotenv==0.21.0
 requests==2.28.1
 typing-extensions==4.2.0
 urllib3==1.26.12
 Werkzeug==2.1.2
 zipp==3.8.1
+Werkzeug==2.2.2
