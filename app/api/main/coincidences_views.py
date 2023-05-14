@@ -22,8 +22,11 @@ class Coincidences(MethodView):
         if len(list(args.items())) == 0:  # Innmutable dict turned into list
             abort(400)
         result = self.team.get_player_string(args, self.querygen)
+
         if result is None:
             abort(404)
+        elif len(result) is None:
+            return make_response(jsonify({'response': 'not found'})), 404
         return make_response(jsonify(result), 200)
 
 

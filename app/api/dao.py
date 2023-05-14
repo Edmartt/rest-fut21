@@ -8,13 +8,14 @@ class QueryGenerator:
         self.connector = connector
 
     def select(self, query, *args) -> list:
-        connection, cursor = self.connector.get_db()
+        _, cursor = self.connector.get_db()
         try:
-            cursor.execute(query, (*args))
+            cursor.execute(query, *args)
             result = cursor.fetchall()
             if result:
                 return result
         except Exception as ex:
             logging.exception(ex)
+            return [ex]
         finally:
             self.connector.close_db()
