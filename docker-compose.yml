@@ -11,32 +11,28 @@ services:
     
     ports:
       - "32000:3306"
-
-    environment:
-      MYSQL_HOST: "${MYSQL_HOST}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-      MYSQL_DATABASE: "${MYSQL_DATABASE}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+    env_file:
+      - ".env"
 
     volumes:
       - './db:/var/lib/mysql'
   
   web:
 
-    build: ./app
+    build: .
 
-    env_file: "./.env"
+    env_file: ".env"
 
     command: bash -c "./wait-for-it.sh -t 60 db:3306 && flask init-db && flask run"
+    restart: always
 
     links:
       - db
 
     ports:
 
-      - "5000:5000"
-    env_file: .env
+      - "6000:5000"
+    env_file: ".env"
 
 
     volumes:
